@@ -54,7 +54,6 @@ void lcd_4bit_Init() ;
 
 int usart_putchar_printf(char var, FILE *stream) ;
 //
-static FILE mystdout = FDEV_SETUP_STREAM(usart_putchar_printf, NULL, _FDEV_SETUP_WRITE);
 
 
 

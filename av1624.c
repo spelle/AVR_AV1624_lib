@@ -18,6 +18,12 @@
 uint8_t nbOutCharLine = 0 ;
 bool_t  currentLine = high_v ;
 
+
+
+static FILE mystdout = FDEV_SETUP_STREAM(usart_putchar_printf, NULL, _FDEV_SETUP_WRITE);
+
+
+
 void lcd_4bit_Send( bool_t rs_v, bool_t rw_v, uint8_t v )
 {
 	AV1624_CTL_PORT = (AV1624_CTL_PORT & ~(1 << AV1624_CTL_RS)) | (rs_v << AV1624_CTL_RS) ;
