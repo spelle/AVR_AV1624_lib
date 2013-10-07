@@ -103,6 +103,7 @@ void lcd_4bit_Init()
 	// Display On, Cursor On, Blink
 	lcd_4bit_SendCmd( 0x0E ) ;
 
+	stdout = &mystdout ;
 }
 
 
