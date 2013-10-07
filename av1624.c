@@ -7,6 +7,10 @@
 
 
 
+#include <util/delay.h>
+
+
+
 #include "av1624.h"
 
 
@@ -14,7 +18,7 @@
 uint8_t nbOutCharLine = 0 ;
 bool_t  currentLine = high_v ;
 
-void lcd_4bit_Send( bool_t rs_v, bool_t rw_v, byte v )
+void lcd_4bit_Send( bool_t rs_v, bool_t rw_v, uint8_t v )
 {
 	AV1624_CTL_PORT = (AV1624_CTL_PORT & ~(1 << AV1624_CTL_RS)) | (rs_v << AV1624_CTL_RS) ;
 
@@ -23,24 +27,24 @@ void lcd_4bit_Send( bool_t rs_v, bool_t rw_v, byte v )
 	AV1624_DATA_PORT = (AV1624_DATA_PORT & ~(AV1624_DATA_MASK)) | (v & AV1624_DATA_MASK) ;
 
 	AV1624_CTL_PORT |= ( 1 << AV1624_CTL_E ) ;
-	delay(10) ;
+	_delay_ms(10) ;
 	AV1624_CTL_PORT &= ~(1 << AV1624_CTL_E) ;
-	delay(10) ;
+	_delay_ms(10) ;
 
 	AV1624_DATA_PORT = (AV1624_DATA_PORT & ~(AV1624_DATA_MASK)) | ((v<<4) & AV1624_DATA_MASK) ;
 
 	AV1624_CTL_PORT |= ( 1 << AV1624_CTL_E ) ;
-	delay(10) ;
+	_delay_ms(10) ;
 	AV1624_CTL_PORT &= ~(1 << AV1624_CTL_E) ;
-	delay(10) ;
+	_delay_ms(10) ;
 }
 
-void lcd_4bit_SendCmd( byte v )
+void lcd_4bit_SendCmd( uint8_t v )
 {
 	lcd_4bit_Send( low_v, low_v, v ) ;
 }
 
-void lcd_4bit_WriteData( byte v )
+void lcd_4bit_WriteData( uint8_t v )
 {
 	if( '\n' != v )
 	{
@@ -105,5 +109,3 @@ int usart_putchar_printf(char var, FILE *stream)
 }
 
 
-
-#endif /* AV1624_H_ */
