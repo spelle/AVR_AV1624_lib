@@ -52,7 +52,7 @@ void lcd_4bit_WriteData( uint8_t v ) ;
 
 void lcd_4bit_Init() ;
 
-int usart_putchar_printf(char var, FILE *stream) ;
+int lcd_4bit_putchar_printf(char var, FILE *stream) ;
 //
 
 

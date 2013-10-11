@@ -20,7 +20,7 @@ bool_t  currentLine = high_v ;
 
 
 
-static FILE mystdout = FDEV_SETUP_STREAM(usart_putchar_printf, NULL, _FDEV_SETUP_WRITE);
+static FILE mystdout = FDEV_SETUP_STREAM( lcd_4bit_putchar_printf, NULL, _FDEV_SETUP_WRITE ) ;
 
 
 
@@ -108,7 +108,7 @@ void lcd_4bit_Init()
 
 
 
-int usart_putchar_printf(char var, FILE *stream)
+int lcd_4bit_putchar_printf(char var, FILE *stream)
 {
 	lcd_4bit_WriteData(var);
 
